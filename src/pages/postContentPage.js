@@ -9,22 +9,23 @@ export default function PostContent() {
   const [post, setPost] = useState({});
   const [author, setAuthor] = useState([]);
 
-  const getPostData = async (id) => {
+  const getPostData = async(id) => {
     const data = await axios.get(
       `https://fswd-wp.devnss.com/wp-json/wp/v2/posts/${id}`
-    );
+    )
+    getAuthor(data.data._links.author[0].href);
     setPost(data.data);
-  };
+  }; 
 
   const getAuthor = async (href) => {
-    const data = await axios.get(href);
-    setAuthor(data.data);
+      const data = await axios.get(href);
+      setAuthor(data.data);
   };
+
 
   const Card = () => {
     const isEmpty  = Object.keys(post).length === 0;
     if (!isEmpty) {
-      getAuthor(post._links.author[0].href); 
       return (
         <div>
           <div
@@ -56,28 +57,23 @@ export default function PostContent() {
 
   const Author = () => {
     return(
-    <Link
-      to={`/author/${author.id}`}
-      style={{ textDecoration: "none", color: "white" }}
-    >
-      <label> {"write by • " + author.name}</label>
-    </Link>)
+      <label>write by • 
+        <Link className="px-1"
+          to={`/author/${author.id}`}
+          style={{  color: "white" }}
+        >
+          {author.name}
+        </Link>
+      </label>
+    )
   }
 
   useEffect(() => {
-    getPostData(postId);
+    getPostData(postId)
   }, [postId]);
 
   return (
-    <div
-      className="bg-dark"
-      style={{
-        height: "100%",
-        overflow: "auto",
-        width: "100%",
-        position: "absolute",
-      }}
-    >
+    <div className="bg-dark fullscreen main" style={{ overflow: "auto" }}>
       <div className="container bg-secondary my-5">
         <Card />
       </div>

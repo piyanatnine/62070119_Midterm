@@ -45,12 +45,25 @@ Link {
   opacity: 1;
 }
 
+.main {
+  padding-bottom: 5vh;
+}
+
 footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
   width: 100%;
-  background-color: black
+  background-color: black;
+  position: absolute;
+  bottom: 0;
+}
+
+p a {
+  text-decoration: none !important;
+  color: white;
+  background-color: #464646;
+}
+
+p a:hover {
+  color: #779DCA
 }
 
 .status-publish {

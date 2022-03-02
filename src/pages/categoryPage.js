@@ -158,10 +158,10 @@ export default function Category() {
 
   return (
     <div
-      className="bg-dark"
-      style={{ height: "100%" , overflow: "auto", width: "100%", position: "absolute" }}
+      className="bg-dark fullscreen main"
+      style={{ overflow: "auto"}}
     >
-      <div className="container my-5">
+      <div className="container my-5 ">
         <div
           className="py-4 px-5 kanitFont"
           style={{
@@ -212,7 +212,7 @@ export default function Category() {
         ></div>
         <div
           className="my-1"
-          style={{ backgroundColor: "rgb(34,40,42)", height: "100vh" }}
+          style={{ backgroundColor: "rgb(34,40,42)" }}
         >
           <div className="row py-3">
             <PostHearder/>

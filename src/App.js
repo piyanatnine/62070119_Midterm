@@ -2,7 +2,8 @@ import { Route, Routes } from 'react-router-dom';
 import HomePage from "./pages/homePage";
 import Category from "./pages/categoryPage";
 import PostContent from "./pages/postContentPage";
-import AuthorProfile from "./pages/authorPage"
+import AuthorProfile from "./pages/authorPage";
+import Footer from "./pages/footer"
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/post/:postId" element={<PostContent />} />
         <Route path="/author/:authorId" element={<AuthorProfile />} />
       </Routes>
+      <Footer />
     </div>
     
   );

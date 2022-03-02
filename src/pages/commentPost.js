@@ -110,7 +110,6 @@ export default function CommentPosts(props) {
 
     useEffect(()=>{
         getCommentData(postId);
-        console.log(postId)
     },[postId])
 
     return (
