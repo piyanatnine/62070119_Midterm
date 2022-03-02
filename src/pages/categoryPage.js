@@ -19,7 +19,7 @@ export default function Category() {
       return (
         <label
           key= {`ctg-${ val.id }`}
-          class={`px-2 ${
+          className={`px-2 ${
             categorySelect === val.id ? "text-light fw-bold" : ""
           }`}
           onClick={() => {
@@ -41,7 +41,7 @@ export default function Category() {
       return (
         <label
           key= {`tag-${ val.id }`}
-          class={`px-2 ${tagSelect === val.id ? "text-light fw-bold" : ""}`}
+          className={`px-2 ${tagSelect === val.id ? "text-light fw-bold" : ""}`}
           onClick={() => {
             if (tagSelect !== val.id) {
               setTagSelect(val.id);
@@ -61,7 +61,7 @@ export default function Category() {
       var value = category.filter((val) => {
         return val.id === id;
       })
-      return (<span class="badge rounded-pill m-1" key= {`ctgB-${ value[0].id }`} style={{backgroundColor: "#2D4263"}}>• {value[0].name}</span>);
+      return (<span className="badge rounded-pill m-1" key= {`ctgB-${ value[0].id }`} style={{backgroundColor: "#2D4263"}}>• {value[0].name}</span>);
     })
   }
 
@@ -70,7 +70,7 @@ export default function Category() {
       var value = tag.filter((val) => {
         return val.id === id;
       })
-      return (<span class="badge rounded-pill mx-1" key= {`tagB-${ value[0].id }`} style={{backgroundColor: "#461111"}}>• {value[0].name}</span>);
+      return (<span className="badge rounded-pill mx-1" key= {`tagB-${ value[0].id }`} style={{backgroundColor: "#461111"}}>• {value[0].name}</span>);
     })
   }
 
@@ -83,30 +83,30 @@ export default function Category() {
 
   const PostHearder = () => {
     return post.map((val) => {
-      if ((categorySelect === -1 || val.categories.includes(categorySelect)) && (tagSelect === -1 || val.tags.includes(tagSelect)) && (val.title.rendered.includes(search)))
+      if ((categorySelect === -1 || val.categories.includes(categorySelect)) && (tagSelect === -1 || val.tags.includes(tagSelect)) && ((val.title.rendered).toUpperCase().includes(search.toUpperCase())))
         return (
-            <div class="col-6" key= {`pst-${ val.id }`} >
+            <div className="col-6" key= {`pst-${ val.id }`} >
               <Link to={`/post/${val.id}`} style={{ textDecoration: "none"}}>
-              <div class="card mb-3" style={{ height: "180px" }}>
-                <div class="row g-0" style={{ height: "100%", backgroundColor: "#FBF8F1" }}>
-                  <div class={`col ${"status-"+val.status} rounded-start` } ></div>
-                  <div class="col-md-11 ">
-                    <div class="card-body ">
-                      <div class="row mx-1">
-                        <h5 class="card-title col-12 text-black fw-bold fs-5" >
+              <div className="card mb-3 cardPost" style={{ height: "180px" }}>
+                <div className="row g-0" style={{ height: "100%", backgroundColor: "#FBF8F1" }}>
+                  <div className={`col ${"status-"+val.status} rounded-start` } ></div>
+                  <div className="col-md-11 ">
+                    <div className="card-body ">
+                      <div className="row mx-1">
+                        <h5 className="card-title col-12 text-black fw-bold fs-5" >
                           {val.title.rendered}
                         </h5>
-                        <label class="col fw-bolder" style={{ color: "#524A4E" }}>{"Author: "}
-                          <label class="fw-bold" style={{ color: "#362706" }}>{findAuthor(val.author)}</label>
+                        <label className="col fw-bolder" style={{ color: "#524A4E" }}>{"Author: "}
+                          <label className="fw-bold" style={{ color: "#362706" }}>{findAuthor(val.author)}</label>
                         </label>
                       </div>
-                      <div class="position-absolute bottom-0 mb-2 mx-1">
-                        <div class="row">
-                          <div class="col-12">
+                      <div className="position-absolute bottom-0 mb-2 mx-1">
+                        <div className="row">
+                          <div className="col-12">
                             <CategoryBadges categoryId={val.categories}/>
                           </div> 
                         </div>
-                          <div class="col-12">
+                          <div className="col-12">
                             <TagBadges tagId={val.tags}/>
                           </div> 
                       </div>
@@ -158,12 +158,12 @@ export default function Category() {
 
   return (
     <div
-      class="bg-dark"
+      className="bg-dark"
       style={{ height: "100%" , overflow: "auto", width: "100%", position: "absolute" }}
     >
-      <div class="container my-5">
+      <div className="container my-5">
         <div
-          class="py-4 px-5 kanitFont"
+          className="py-4 px-5 kanitFont"
           style={{
             backgroundColor: "#1F292E",
             color: "white",
@@ -172,9 +172,9 @@ export default function Category() {
         >
           Search Posts
         </div>
-        <div class="bg-secondary">
+        <div className="bg-secondary">
           <div
-            class="p-5 bg-img"
+            className="p-5 bg-img"
             style={{
               color: "rgb(49,55,59)",
               backgroundImage: `url(${background})`,
@@ -182,39 +182,39 @@ export default function Category() {
             }}
           >
             <input
-              class="form-control p-2 kanitFont"
+              className="form-control p-2 kanitFont"
               type="textbox"
               name="search"
-              placeholder="ค้นหาด้วยชื่อกระทู้..."
+              placeholder="type in keywords..."
               onChange={(event) => setSearch(event.target.value)}
             />
-            <div class="row pt-4">
-              <div class="col-1 fw-bold text-white">
-                <p>หมวดหมู่</p>
+            <div className="row pt-4">
+              <div className="col-1 fw-bold text-white">
+                <p>Categorys</p>
               </div>
-              <div class="col" style={{ color: "#B8D3C5" }}>
+              <div className="col" style={{ color: "#B8D3C5" }}>
                 <CategorySelection />
               </div>
             </div>
-            <div class="row">
-              <div class="col-1 fw-bold text-white">
-                <p>ประเภท</p>
+            <div className="row">
+              <div className="col-1 fw-bold text-white">
+                <p>Tags</p>
               </div>
-              <div class="col" style={{ color: "#B8D3C5" }}>
+              <div className="col" style={{ color: "#B8D3C5" }}>
                 <TagSelection />
               </div>
             </div>
           </div>
         </div>
         <div
-          class="mt-2 py-4"
+          className="mt-2 py-4"
           style={{ backgroundColor: "rgb(46,53,56)" }}
         ></div>
         <div
-          class="my-1"
+          className="my-1"
           style={{ backgroundColor: "rgb(34,40,42)", height: "100vh" }}
         >
-          <div class="row py-3">
+          <div className="row py-3">
             <PostHearder/>
           </div>
         </div>

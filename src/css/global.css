@@ -86,6 +86,10 @@ footer {
   animation-iteration-count: infinite
 }
 
+.cardPost:hover {
+  filter: brightness(1.05)
+}
+
 .lobsterFont {
   font-family: 'Lobster', cursive;
 }
