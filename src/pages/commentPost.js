@@ -8,55 +8,34 @@ export default function CommentPosts(props) {
 
     const addComment = () => {
         let commentForm = {
-          post: postId,
-          parent: 0,
-          author: -1,
+          post: parseInt(postId),
           author_name: "",
-          author_url: "",
-          date: "",
-          date_gmt: "",
-          content: {
-            rendered: "",
-          },
-          link: "",
-          status: "approved",
-          type: "comment",
-          author_avatar_urls: {
-            24: "https://secure.gravatar.com/avatar/45ac6cf88a576c262383415f81b4ac1c?s=24&d=mm&r=g",
-            48: "https://secure.gravatar.com/avatar/45ac6cf88a576c262383415f81b4ac1c?s=48&d=mm&r=g",
-            96: "https://secure.gravatar.com/avatar/45ac6cf88a576c262383415f81b4ac1c?s=96&d=mm&r=g",
-          },
-          meta: [],
-          _links: {
-            self: [
-              {
-                href: "",
-              },
-            ],
-            collection: [
-              {
-                href: "",
-              },
-            ],
-            up: [
-              {
-                embeddable: true,
-                post_type: "post",
-                href: `https://fswd-wp.devnss.com/wp-json/wp/v2/posts/${postId}`,
-              },
-            ],
-          },
-        };
+          content: ""
+      };
+
         if (newComment !== ""){
-          commentForm.author_name = "SirNine (comment-Test)";
-          let time = new Date();
-          commentForm.date = time.toISOString();
-          commentForm.date_gmt = time.toISOString();
-          commentForm.content.rendered = "<p>" + newComment + "</p>";
-          setComment([commentForm, ...comment]);
+          commentForm.author_name = "ไอ้แดงมันเป็นนักสู้";
+          commentForm.content = newComment;
+          postComment(commentForm);
           setNewComment("");
         }
     };
+
+    const postComment = (data) => {
+      var header = {
+        "Content-Type": "application/json",
+        Authorization: 'Basic ZnN3ZDpmc3dkLWNtcw=='
+      }
+      axios.post(
+        `https://fswd-wp.devnss.com/wp-json/wp/v2/comments`,
+        data, 
+        {headers: header}
+      )
+        .then(()=>{
+          getCommentData(postId);
+        })
+
+    }
     
     const CommentDate = (props) => {
         let dateStr = new Date(props.date);
